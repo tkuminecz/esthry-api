@@ -1,0 +1,30 @@
+{
+	"name": "esthry",
+	"description": "Library for upload and download of images from Amazon S3",
+	"keywords": [
+		"amazon",
+		"aws",
+		"s3",
+		"image"
+	],
+	"version": "0.0.1",
+	"author": {
+		"name": "Tim Kuminecz",
+		"email": "tkuminecz@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/tkuminecz/esthry.git"
+	},
+	"bugs": {
+		"url": "https://github.com/tkuminecz/esthry/issues"
+	},
+	"dependencies": {
+		"knox": "0.8.6",
+		"q": "0.9.7",
+		"requirejs": "2.1.8"
+	},
+	"devDependencies": {
+	},
+	"readmeFilename": "Readme.md"
+}
