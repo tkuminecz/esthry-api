@@ -1,4 +1,4 @@
 esthry
 ======
 
-Library for upload and download of images from Amazon S3
+Multimedia storage system backed by MongoDB and Amazon S3
