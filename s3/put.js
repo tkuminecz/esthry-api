@@ -25,8 +25,6 @@ define(['q'], function(Q) {
 			headers['x-amz-acl'] = 'public-read';
 		}
 
-		console.log(headers);
-
 		// make request
 		req = client.put(fileName, headers);
 
