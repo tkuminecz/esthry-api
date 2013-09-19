@@ -10,5 +10,7 @@ requirejs.config({
 // bootstrap
 requirejs(['asset'], function(Asset) {
 
-	console.log(Asset);
+	Asset.list()
+		.then(console.log)
+		.done();
 });
