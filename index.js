@@ -12,7 +12,7 @@ requirejs.config({
 });
 
 // bootstrap
-requirejs(['express', 'routes/collection'], function(Express, CollectionRoutes) {
+requirejs(['express', 'routes/asset', 'routes/collection', 'routes/tag'], function(Express, AssetRoutes, CollectionRoutes, TagRoutes) {
 
 	var app = Express();
 
@@ -26,7 +26,9 @@ requirejs(['express', 'routes/collection'], function(Express, CollectionRoutes) 
 	});
 
 	// add routes
+	AssetRoutes(app);
 	CollectionRoutes(app);
+	TagRoutes(app);
 
 	// listen
 	console.log('Listening on ' + host + ':' + port);
