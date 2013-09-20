@@ -1,4 +1,4 @@
-esthry
+esthry-api
 ======
 
-Multimedia storage system backed by MongoDB and Amazon S3
+REST api for managing media assets and collections

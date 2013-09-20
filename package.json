@@ -1,11 +1,12 @@
 {
-	"name": "esthry",
-	"description": "Library for upload and download of images from Amazon S3",
+	"name": "esthry-api",
+	"description": "REST api for managing media assets and collections",
 	"keywords": [
 		"amazon",
 		"aws",
 		"s3",
-		"image"
+		"image",
+		"video"
 	],
 	"version": "0.0.1",
 	"author": {
@@ -14,10 +15,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/tkuminecz/esthry.git"
+		"url": "git://github.com/tkuminecz/esthry-api.git"
 	},
 	"bugs": {
-		"url": "https://github.com/tkuminecz/esthry/issues"
+		"url": "https://github.com/tkuminecz/esthry-api/issues"
 	},
 	"dependencies": {
 		"express": "3.4.0",
@@ -26,7 +27,6 @@
 		"mongodb-wrapper": "1.0.x",
 		"q": "0.9.x",
 		"requirejs": "2.1.x",
-		"tiny-uuid": "1.0.x"
 	},
 	"devDependencies": {
 		"grunt": "0.4.1",
