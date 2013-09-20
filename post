@@ -1,0 +1,3 @@
+#!/bin/sh
+
+./api POST $1 $2
