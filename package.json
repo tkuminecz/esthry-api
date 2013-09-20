@@ -26,7 +26,7 @@
 		"lodash": "2.0.x",
 		"mongodb-wrapper": "1.0.x",
 		"q": "0.9.x",
-		"requirejs": "2.1.x",
+		"requirejs": "2.1.x"
 	},
 	"devDependencies": {
 		"grunt": "0.4.1",

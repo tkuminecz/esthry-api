@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 	// initialize configuration
 	grunt.initConfig({
 		jshint: {
-			src: ['lib/*']
+			src: ['Gruntfile.js', 'lib/*']
 		}
 	});
 
