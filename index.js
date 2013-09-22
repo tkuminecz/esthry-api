@@ -12,12 +12,29 @@ requirejs.config({
 });
 
 // bootstrap
-requirejs(['express', 'routes/asset', 'routes/collection', 'routes/tag'], function(Express, AssetRoutes, CollectionRoutes, TagRoutes) {
+requirejs([
+	'cors',
+	'express',
+	'routes/asset',
+	'routes/collection',
+	'routes/tag',
+	'express-cache-control',
+], function(Cors, Express, AssetRoutes, CollectionRoutes, TagRoutes, CacheControl) {
 
-	var app = Express();
+	var app = Express(),
+		cache = new CacheControl({override: 0}).middleware;
+
+	// log requests
+	app.use(function(req, res, next) {
+		console.log(req.url);
+		next();
+	});
 
 	// use bodyParser middleware
 	app.use(Express.bodyParser());
+
+	// support CORS
+	app.use(Cors());
 
 	// default route
 	app.get('/', function(req, res) {
@@ -31,6 +48,6 @@ requirejs(['express', 'routes/asset', 'routes/collection', 'routes/tag'], functi
 	TagRoutes(app);
 
 	// listen
-	console.log('Listening on ' + host + ':' + port);
+	console.log('Listening on ' + host + ':' + port + "\n");
 	app.listen(port, host);
 });

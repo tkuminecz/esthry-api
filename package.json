@@ -21,7 +21,9 @@
 		"url": "https://github.com/tkuminecz/esthry-api/issues"
 	},
 	"dependencies": {
+		"cors": "1.0.1",
 		"express": "3.4.0",
+		"express-cache-control": "1.0.2",
 		"knox": "0.8.x",
 		"lodash": "2.0.x",
 		"mongodb-wrapper": "1.0.x",
