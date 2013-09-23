@@ -1,18 +1,23 @@
-module.exports = function(grunt) {
+/* global module*/
+(function() {
+	'use strict';
 
-	// initialize configuration
-	grunt.initConfig({
-		jshint: {
-			src: ['Gruntfile.js', 'lib/*'],
-			options: {
-				newcap: false
+	module.exports = function(grunt) {
+
+		// initialize configuration
+		grunt.initConfig({
+			jshint: {
+				src: ['Gruntfile.js', 'lib/*'],
+				options: {
+					newcap: false
+				}
 			}
-		}
-	});
+		});
 
-	// load npm modules
-	grunt.loadNpmTasks('grunt-contrib-jshint');
+		// load npm modules
+		grunt.loadNpmTasks('grunt-contrib-jshint');
 
-	// register tasks
-	grunt.registerTask('default', ['jshint']);
-};
+		// register tasks
+		grunt.registerTask('default', ['jshint']);
+	};
+}());
