@@ -3,7 +3,10 @@ module.exports = function(grunt) {
 	// initialize configuration
 	grunt.initConfig({
 		jshint: {
-			src: ['Gruntfile.js', 'lib/*']
+			src: ['Gruntfile.js', 'lib/*'],
+			options: {
+				newcap: false
+			}
 		}
 	});
 

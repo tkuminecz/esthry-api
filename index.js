@@ -19,7 +19,8 @@ requirejs([
 	'routes/collection',
 	'routes/tag',
 	'express-cache-control',
-], function(Cors, Express, AssetRoutes, CollectionRoutes, TagRoutes, CacheControl) {
+	's3/put',
+], function(Cors, Express, AssetRoutes, CollectionRoutes, TagRoutes, CacheControl, S3Put) {
 
 	var app = Express(),
 		cache = new CacheControl({override: 0}).middleware;
