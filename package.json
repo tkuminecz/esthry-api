@@ -1,40 +1,46 @@
 {
-	"name": "esthry-api",
-	"description": "REST api for managing media assets and collections",
-	"keywords": [
-		"amazon",
-		"aws",
-		"s3",
-		"image",
-		"video"
-	],
-	"version": "0.0.1",
-	"author": {
-		"name": "Tim Kuminecz",
-		"email": "tkuminecz@gmail.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/tkuminecz/esthry-api.git"
-	},
-	"bugs": {
-		"url": "https://github.com/tkuminecz/esthry-api/issues"
-	},
-	"dependencies": {
-		"cors": "1.0.1",
-		"express": "3.4.0",
-		"express-cache-control": "1.0.2",
-		"knox": "0.8.x",
-		"lodash": "2.0.x",
-		"mongodb-wrapper": "1.0.x",
-		"q": "0.9.x",
-		"requirejs": "2.1.x",
-		"tiny-uuid": "1.x"
-	},
-	"devDependencies": {
-		"grunt": "0.4.1",
-		"grunt-cli": "0.1.9",
-		"grunt-contrib-jshint": "0.6.4"
-	},
-	"readmeFilename": "README.md"
+  "name": "esthry-api",
+  "description": "REST api for managing media assets and collections",
+  "keywords": [
+    "amazon",
+    "aws",
+    "s3",
+    "image",
+    "video"
+  ],
+  "version": "0.0.1",
+  "author": {
+    "name": "Tim Kuminecz",
+    "email": "tkuminecz@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tkuminecz/esthry-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tkuminecz/esthry-api/issues"
+  },
+  "dependencies": {
+    "cors": "1.0.1",
+    "express": "3.4.0",
+    "express-cache-control": "1.0.2",
+    "gulp": "^3.8.11",
+    "gulp-amd-builder": "0.0.5",
+    "gulp-babel": "^4.0.0",
+    "gulp-jshint": "^1.9.2",
+    "jshint": "^2.6.3",
+    "knox": "0.8.x",
+    "lodash": "2.0.x",
+    "mongodb-wrapper": "1.0.x",
+    "q": "0.9.x",
+    "requirejs": "2.1.x",
+    "tiny-uuid": "1.x"
+  },
+  "devDependencies": {
+    "grunt": "0.4.1",
+    "grunt-cli": "0.1.9",
+    "grunt-contrib-jshint": "0.6.4",
+    "gulp-if": "^1.2.5"
+  },
+  "readmeFilename": "README.md"
 }
