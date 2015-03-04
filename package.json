@@ -20,6 +20,10 @@
   "bugs": {
     "url": "https://github.com/tkuminecz/esthry-api/issues"
   },
+  "scripts": {
+    "build": "gulp",
+    "start": "node build/index.js"
+  },
   "dependencies": {
     "cors": "1.0.1",
     "express": "3.4.0",
