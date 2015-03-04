@@ -1,6 +1,7 @@
 /* db.js */
 
 import _ from 'lodash';
+import config from 'config';
 import mongo from 'mongodb-wrapper';
 import q from 'q';
 
@@ -10,7 +11,7 @@ var orig_db = mongo.db;
  * Wrapper around db() to automatically connect to esthry
  */
 mongo.db = function() {
-	return orig_db('localhost', 27017, 'esthry');
+	return orig_db(config.mongo_uri);
 };
 
 /**
