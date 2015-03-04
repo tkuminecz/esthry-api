@@ -1,18 +1,17 @@
-/* global define*/
-define(['db', 'validation'], function(Mongo, Validation) {
-	'use strict';
+/* collection/remove.js */
 
-	/**
-	 * Removes the collection with the given ID
-	 *
-	 * @param {String} id The ID of the collection to remove
-	 * @return {Promise}
-	 */
-	function remove(id) {
-		Validation.validateValue({validate: 'objectid'}, id);
-		return Mongo.removeObjects('collections', {_id: id});
-	}
+import mongo from 'db';
+import validation from 'validation';
 
-	// export function
-	return remove;
-});
+/**
+ * Removes the collection with the given ID
+ *
+ * @param {String} id The ID of the collection to remove
+ * @return {Promise}
+ */
+function remove(id) {
+	validation.validateValue({validate: 'objectid'}, id);
+	return mongo.removeObjects('collections', {_id: id});
+}
+
+export default remove;

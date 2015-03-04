@@ -1,28 +1,29 @@
-/* global define*/
-define(['db', 'lodash', 'q', 'validation'], function(Mongo, _, Q, Validation) {
-	'use strict';
+/* collection/create.js */
 
-	/**
-	 * Schema for the collection object
-	 */
-	var schema = {
-		required: [
-			{key: 'title', config: {validate: 'string'}},
-			{key: 'description', config: {validate: 'string'}}
-		]
-	};
+import _ from 'lodash';
+import mongo from 'db';
+import q from 'q';
+import validation from 'validation';
 
-	/**
-	 * Creates a new collection with the given data
-	 *
-	 * @param {Object} data
-	 * @return {Promise}
-	 */
-	function create(data) {
-		Validation.validateObject(schema, data);
-		return Mongo.createObject('collections', data);
-	}
+/**
+ * Schema for the collection object
+ */
+var schema = {
+	required: [
+		{key: 'title', config: {validate: 'string'}},
+		{key: 'description', config: {validate: 'string'}}
+	]
+};
 
-	// export function
-	return create;
-});
+/**
+ * Creates a new collection with the given data
+ *
+ * @param {Object} data
+ * @return {Promise}
+ */
+function create(data) {
+	validation.validateObject(schema, data);
+	return mongo.createObject('collections', data);
+}
+
+export default create;

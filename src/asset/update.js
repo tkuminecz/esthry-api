@@ -1,4 +1,5 @@
 /* asset/update.js */
+
 import mongo from 'db';
 import validation from 'validation';
 

@@ -1,18 +1,17 @@
-/* global define*/
-define(['db', 'validation'], function(Mongo, Validation) {
-	'use strict';
+/* collection/get.js */
 
-	/**
-	 * Returns a promise for a collection
-	 *
-	 * @param {String} id
-	 * @return {Promise}
-	 */
-	function get(id) {
-		Validation.validateValue({validate: 'objectid'}, id);
-		return Mongo.getSingleObject('collections', {_id: id});
-	}
+import mongo from 'db';
+import validation from 'validation';
+
+/**
+ * Returns a promise for a collection
+ *
+ * @param {String} id
+ * @return {Promise}
+ */
+function get(id) {
+	validation.validateValue({validate: 'objectid'}, id);
+	return mongo.getSingleObject('collections', {_id: id});
+}
 	
-	// export function
-	return get;
-});
+export default get;

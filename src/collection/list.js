@@ -1,47 +1,46 @@
-/* global define*/
-define(['q', 'db'], function(Q, Mongo) {
-	'use strict';
+/* collection/list.js */
 
-	/**
-	 * Returns a list of collections
-	 *
-	 * @param {Object} criteria
-	 * @param {Array} fields
-	 * @param {Integer} count
-	 * @param {Integer} offset
-	 * @return {Promise}
-	 */
-	function list(criteria, fields, count, offset) {
-		var defer = Q.defer(),
-			db = Mongo.db();
+import mongo from 'db';
+import q from 'q';
 
-		// handle default values
-		criteria = criteria || {};
-		fields = fields || [];
-		count = count || 0;
-		offset = offset || 0;
+/**
+ * Returns a list of collections
+ *
+ * @param {Object} criteria
+ * @param {Array} fields
+ * @param {Integer} count
+ * @param {Integer} offset
+ * @return {Promise}
+ */
+function list(criteria, fields, count, offset) {
+	var defer = q.defer(),
+		db = mongo.db();
 
-		// choose the collection
-		db.collection('collections');
+	// handle default values
+	criteria = criteria || {};
+	fields = fields || [];
+	count = count || 0;
+	offset = offset || 0;
 
-		// make the query & truncate results
-		db.collections
-			.find(criteria, fields)
-			.skip(offset)
-			.limit(count)
-			.toArray(function(err, collections) {
-				db.close();
+	// choose the collection
+	db.collection('collections');
 
-				if (err) {
-					defer.reject(err);
-				}
+	// make the query & truncate results
+	db.collections
+		.find(criteria, fields)
+		.skip(offset)
+		.limit(count)
+		.toArray(function(err, collections) {
+			db.close();
 
-				defer.resolve(collections);
-			});
+			if (err) {
+				defer.reject(err);
+			}
 
-		return defer.promise;
-	}
+			defer.resolve(collections);
+		});
 
-	// export function
-	return list;
-});
+	return defer.promise;
+}
+
+export default list;

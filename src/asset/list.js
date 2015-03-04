@@ -1,47 +1,46 @@
-/* global define*/
-define(['q', 'db'], function(Q, Mongo) {
-	'use strict';
+/* asset/list.js */
 
-	/**
-	 * Returns a list of assets that meet the search criteria
-	 *
-	 * @param {Object} criteria The query criteria
-	 * @param {Array} fields The set of fields to return
-	 * @param {Integer} count The maximum number of results to return
-	 * @param {Integer} offset The number of results to remove from the beginning of the list
-	 * @return {Promise}
-	 */
-	function list(criteria, fields, count, offset) {
-		var defer = Q.defer(),
-			db = Mongo.db();
+import mongo from 'db';
+import q from 'q';
 
-		// handle default values for args
-		criteria = criteria || {};
-		fields = fields || [];
-		count = count || 0;
-		offset = offset || 0;
+/**
+ * Returns a list of assets that meet the search criteria
+ *
+ * @param {Object} criteria The query criteria
+ * @param {Array} fields The set of fields to return
+ * @param {Integer} count The maximum number of results to return
+ * @param {Integer} offset The number of results to remove from the beginning of the list
+ * @return {Promise}
+ */
+function list(criteria, fields, count, offset) {
+	var defer = q.defer(),
+		db = mongo.db();
 
-		// choose the collection
-		db.collection('assets');
+	// handle default values for args
+	criteria = criteria || {};
+	fields = fields || [];
+	count = count || 0;
+	offset = offset || 0;
 
-		// make the query and truncate results
-		db.assets
-			.find(criteria, fields)
-			.skip(offset)
-			.limit(count)
-			.toArray(function(err, assets) {
-				db.close();
+	// choose the collection
+	db.collection('assets');
 
-				if (err) {
-					defer.reject(err);
-				}
+	// make the query and truncate results
+	db.assets
+		.find(criteria, fields)
+		.skip(offset)
+		.limit(count)
+		.toArray(function(err, assets) {
+			db.close();
 
-				defer.resolve(assets);
-			});
+			if (err) {
+				defer.reject(err);
+			}
 
-		return defer.promise;
-	}
+			defer.resolve(assets);
+		});
 
-	// export function
-	return list;
-});
+	return defer.promise;
+}
+
+export default list;

@@ -1,8 +1,8 @@
-/* remove.js */
+/* asset/remove.js */
 
 import mongo from 'db';
 import validation from 'validation';
-import getAsset from 'asest/get';
+import getAsset from 'asset/get';
 import s3remove from 's3/remove';
 import urlUtil from 'url';
 

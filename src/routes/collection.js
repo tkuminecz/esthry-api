@@ -1,4 +1,5 @@
 /* routes/collection.js */
+
 import _ from 'lodash';
 import collection from 'collection';
 import Route from 'routes';

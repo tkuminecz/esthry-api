@@ -4,4 +4,4 @@ requirejs.config({
 	nodeRequire: require
 });
 
-requirejs(['main'])
+requirejs(['main']);

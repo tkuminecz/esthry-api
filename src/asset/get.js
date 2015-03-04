@@ -1,18 +1,17 @@
-/* global define*/
-define(['db', 'validation'], function(Mongo, Validation) {
-	'use strict';
+/* asset/get.js */
 
-	/**
-	 * Returns a promise for a particular asset
-	 *
-	 * @param {String} id
-	 * @return {Promise}
-	 */
-	function get(id) {
-		Validation.validateValue({validate: 'objectid'}, id);
-		return Mongo.getSingleObject('assets', {_id: id});
-	}
+import mongo from 'db';
+import validation from 'validation';
 
-	// export function
-	return get;
-});
+/**
+ * Returns a promise for a particular asset
+ *
+ * @param {String} id
+ * @return {Promise}
+ */
+function get(id) {
+	validation.validateValue({validate: 'objectid'}, id);
+	return mongo.getSingleObject('assets', {_id: id});
+}
+
+export default get;

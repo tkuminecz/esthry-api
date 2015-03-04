@@ -1,7 +1,8 @@
-/* asset.js */
+/* routes/asset.js */
+
 import _ from 'lodash';
 import Route from 'routes';
-import Asset from 'asset';
+import asset from 'asset';
 
 /**
  * Adds the /collection/ routes to the app
@@ -13,7 +14,7 @@ function routes(app) {
 
 	// list assets
 	app.get('/asset/', function(req, res) {
-		Asset.list()
+		asset.list()
 			.then(_.partialRight(_.pluck, '_id'))
 			.then(Route.sendJson(res))
 			.done();
@@ -21,14 +22,14 @@ function routes(app) {
 
 	// create a new asset
 	app.post('/asset/', function(req, res) {
-		Asset.create(req.body)
+		asset.create(req.body)
 			.then(Route.sendJson(res))
 			.done();
 	});
 
 	// delete an asset
 	app.del('/asset/:id', function(req, res) {
-		Asset.remove(req.params.id)
+		asset.remove(req.params.id)
 			.then(function(n_affected) {
 				Route.sendJson(res)([(n_affected > 0)]);
 			})
@@ -38,14 +39,14 @@ function routes(app) {
 
 	// retrieve an asset
 	app.get('/asset/:id', function(req, res) {
-		Asset.get(req.params.id)
+		asset.get(req.params.id)
 			.then(Route.sendJson(res))
 			.done();
 	});
 
 	// update an asset
 	app.put('/asset/:id', function(req, res) {
-		Asset.update(req.params.id, req.body)
+		asset.update(req.params.id, req.body)
 			.then(function(n_affected) {
 				Route.sendJson(res)([(n_affected > 0)]);
 			})

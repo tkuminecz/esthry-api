@@ -1,4 +1,5 @@
-/* global define*/
+/* routes/tag.js */
+
 import _ from 'lodash';
 import Route from 'routes';
 import tag from 'tag';
