@@ -9,7 +9,7 @@ import cacheControl from 'express-cache-control';
 import s3Put from 's3/put';
 
 var port = 3000,
-	host = 'localhost',
+	host = '0.0.0.0',
 	app = express(),
 	cache = new cacheControl({override: 0}).middleware;
 
