@@ -1,7 +1,8 @@
 /* config.js */
 
-export default {
-	s3_key: '0B2RQPTVDHT78GS747G2',
-	s3_secret: 'Pi4ZxlkUKb0Ntev3B2rBgjJpW0JUAxLIuw8adB78',
-	s3_bucket: 'tkuminecz-images'
-};
+import fs from 'fs';
+
+// load config from /etc/esthry/esthry.json
+var config = JSON.parse(fs.readFileSync('/etc/esthry/esthry.json'));
+
+export default config;
