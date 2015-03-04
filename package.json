@@ -28,7 +28,7 @@
     "cors": "1.0.1",
     "express": "3.4.0",
     "express-cache-control": "1.0.2",
-    "gulp": "^3.8.11",
+    "gulp": "~3.8.11",
     "gulp-amd-builder": "0.0.5",
     "gulp-babel": "^4.0.0",
     "gulp-if": "^1.2.5",
@@ -39,7 +39,8 @@
     "mongodb-wrapper": "1.0.x",
     "q": "0.9.x",
     "requirejs": "2.1.x",
-    "tiny-uuid": "1.x"
+    "tiny-uuid": "1.x",
+    "gulp-cli": "~0.1.5"
   },
   "readmeFilename": "README.md"
 }
