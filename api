@@ -2,10 +2,10 @@
 
 BODY=""
 if [ ! -z $3 ]; then
-	BODY="-d $3"
+	BODY="--data $3"
 fi
 
-CMD="curl -X $1 -H 'content-type:application/json' http://localhost:3000/$2 $BODY"
+CMD="curl -v -X $1 -H 'content-type:application/json' http://localhost:3000/$2 $BODY"
 
 echo $CMD
 $CMD
