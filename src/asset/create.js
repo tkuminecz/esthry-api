@@ -1,6 +1,7 @@
 /* asset/create.js */
 
 import _ from 'lodash';
+import imageUtils from 'util/image';
 import mongo from 'db';
 import q from 'q';
 import s3put from 's3/put';
@@ -58,32 +59,41 @@ var schema = {
 function post(data) {
 	var defer = q.defer(),
 		db = mongo.db('localhost', 27017, 'esthry'),
-		upload_image;
+		upload_image,
+		prepData;
 
 	validation.validateObject(schema, data);
 
 	// upload from URL
 	if (data.image_url) {
-		upload_image = s3put.putFromUrl(data.image_url);
+		prepData = q.all([s3put.putFromUrl(data.image_url), imageUtils.getInfoFromUrl(data.image_url)])
+			.spread((s3_filename, image_data) => {
+				data.date_created = Math.floor(new Date().getTime() / 1000);
+				data.tags = _.isArray(data.tags) ? data.tags : [data.tags];
+				data.s3_url = s3_filename;
+				data.type = image_data.type;
+				data.size = image_data.size;
+				delete data.image_url;
+
+				return data;
+			});
 	}
 	else { // upload from image data
-		upload_image = s3put.putImageFromBase64(data.image_data.data, data.image_data.type);
+		prepData = s3put.putImageFromBase64(data.image_data.data, data.image_data.type)
+			.then((s3_filename) => {
+				data.date_created = Math.floor(new Date().getTime() / 1000);
+				data.tags = _.isArray(data.tags) ? data.tags : [data.tags];
+				data.s3_url = s3_filename;
+				data.type = data.image_data.type;
+				data.size = data.image_data.size;
+				delete data.image_data;
+
+				return data;
+			});
 	}
 
-	/*
-	 * data contains either an 'image_url' or 'image_data' field.
-	 * Either way, the image needs to be uploaded to S3 and then the
-	 * relevant S3 url is what is actually saved to mongo
-	 */
-
-	upload_image.then(function(s3_filename) {
-		data.s3_url = s3_filename;
-		data.type = data.image_data.type;
-		data.size = data.image_data.size;
-		delete data.image_data;
-		delete data.image_url;
-
-		// save object to mongo
+	// save object to mongo
+	prepData.then((data) => {
 		db.collection('assets');
 		db.assets.save(data, function(err, asset) {
 			db.close();
@@ -94,7 +104,7 @@ function post(data) {
 
 			defer.resolve(asset);
 		});
-	});
+	}).done();
 
 	return defer.promise;
 }

@@ -65,8 +65,8 @@ function put(client, fileName, contentType, data, public_read) {
 function putFromUrl(src_url, dest_filename) {
 	var defer = q.defer(),
 		client = knox.createClient({
-			key: config.s3_key,
-			secret: config.s3_secret,
+			key: config.aws_key,
+			secret: config.aws_secret,
 			bucket: config.s3_bucket
 		});
 
@@ -148,9 +148,4 @@ function putJson(client, fileName, obj, public_read) {
 	return put(client, fileName, 'application/json', JSON.stringify(obj), public_read);
 }
 
-export default {
-	put: put,
-	putImageFromBase64: putImageFromBase64,
-	putFromUrl: putFromUrl,
-	putJson: putJson
-};
+export default {put, putImageFromBase64, putFromUrl, putJson};
