@@ -1,7 +1,15 @@
 var gulp = require('gulp'),
 	babel = require('gulp-babel'),
 	jshint = require('gulp-jshint'),
-	gulpIf = require('gulp-if');
+	gulpIf = require('gulp-if'),
+	gulpTrim = require('gulp-trim');
+
+// trim task
+gulp.task('trim', function() {
+	return gulp.src(['src/**/*.js'])
+		.pipe(gulpTrim())
+		.pipe(gulp.dest('src'));
+});
 
 // jshint task
 gulp.task('jshint', function() {
