@@ -28,10 +28,6 @@ var schema = {
 				}
 			}}
 		},
-		{
-			key: 'collection_id',
-			config: {validate: 'string'}
-		},
 		[
 			{
 				key: 'image_url',
