@@ -34,13 +34,15 @@
     "gulp-if": "^1.2.5",
     "gulp-jshint": "^1.9.2",
     "jshint": "^2.6.3",
-    "knox": "0.8.x",
+    "knox": "~0.8.10",
     "lodash": "2.0.x",
     "mongodb-wrapper": "1.0.x",
     "q": "0.9.x",
     "requirejs": "2.1.x",
     "tiny-uuid": "1.x",
-    "gulp-cli": "~0.1.5"
+    "gulp-cli": "~0.1.5",
+    "request": "~2.53.0",
+    "gulp-trim": "~1.0.1"
   },
   "readmeFilename": "README.md"
 }
