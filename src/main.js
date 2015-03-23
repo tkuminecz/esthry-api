@@ -20,7 +20,7 @@ app.use(function(req, res, next) {
 });
 
 // use bodyParser middleware
-app.use(express.bodyParser());
+app.use(express.bodyParser({limit: '50mb'}));
 
 // support CORS
 app.use(cors());
