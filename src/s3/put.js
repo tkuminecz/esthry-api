@@ -106,8 +106,8 @@ function putFromUrl(src_url, dest_filename) {
 function putImageFromBase64(src_data, src_type, dest_filename) {
 	var defer = q.defer(),
 		client = knox.createClient({
-			key: config.s3_key,
-			secret: config.s3_secret,
+			key: config.aws_key,
+			secret: config.aws_secret,
 			bucket: config.s3_bucket
 		}),
 		unencoded = new Buffer(src_data, 'base64'),
