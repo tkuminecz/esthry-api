@@ -44,6 +44,12 @@ function routes(app) {
 			.done();
 	});
 
+	// display an asset
+	app.get('/asset/:id/display', (req, res) => {
+		asset.display(req.params.id, res)
+			.done();
+	});
+
 	// update an asset
 	app.put('/asset/:id', function(req, res) {
 		asset.update(req.params.id, req.body)
