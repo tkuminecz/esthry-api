@@ -43,7 +43,8 @@
     "gulp-cli": "~0.1.5",
     "request": "~2.53.0",
     "gulp-trim": "~1.0.1",
-    "lwip": "0.0.6"
+    "lwip": "0.0.6",
+    "MD5": "~1.2.1"
   },
   "readmeFilename": "README.md"
 }
