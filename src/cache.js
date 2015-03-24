@@ -1,4 +1,4 @@
-/* asset/cache.js */
+/* cache.js */
 
 import fs from 'fs';
 import q from 'q';
@@ -60,7 +60,7 @@ class Cache {
 					});
 				}
 				else {
-					defer.reject('cache miss');
+					defer.resolve();
 				}
 			});
 
