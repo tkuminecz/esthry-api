@@ -14,11 +14,11 @@ import q from 'q';
  */
 function list(criteria, fields, count, offset) {
 	var defer = q.defer(),
-		db = mmvgongo.db();
+		db = mongo.db();
 
 	// choose collection
 	db.collection('tags');
-	
+
 	// query and truncate results
 	db.tags
 		.find(criteria, fields)
