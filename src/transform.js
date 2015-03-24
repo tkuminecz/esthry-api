@@ -3,12 +3,25 @@
 import lwip from 'lwip';
 import q from 'q';
 
+// enlarges image to maximum size that still fits within the canvas
 function contain(image, opts) {
-	var defer = q.defer();
+	var defer = q.defer(),
+		img_height = image.height(),
+		img_width = image.width(),
+		img_ratio = img_width / img_height,
+		canvas_ratio = opts.width / opts.height,
+		new_img_w, new_img_h;
 
-	opts.color = opts.color || {r: 0, g: 0, b: 0, a: 0};
+	if (img_ratio > canvas_ratio) { // image is wider than the canvas
+		new_img_w = opts.width;
+		new_img_h = (new_img_w / img_ratio);
+	}
+	else { // image is taller than or same as the canvas
+		new_img_h = opts.height;
+		new_img_W = (new_img_h * img_ratio);
+	}
 
-	image.contain(opts.width, opts.height, opts.color, (err, image) => {
+	image.resize(new_img_w, new_img_h, (err, image) => {
 		if (err) {
 			defer.reject(err);
 		}
@@ -20,6 +33,7 @@ function contain(image, opts) {
 	return defer.promise;
 }
 
+// crops the image to a rectangle
 function crop(image, opts) {
 	var defer = q.defer();
 
@@ -35,6 +49,7 @@ function crop(image, opts) {
 	return defer.promise;
 }
 
+// crops the image to a rectangle using percentages instead of absolute coordinates
 function cropPercent(image, opts) {
 	var defer = q.defer(),
 		height = image.height(),
@@ -59,6 +74,7 @@ function cropPercent(image, opts) {
 	return defer.promise;
 }
 
+// scales the image using a ratio
 function scale(image, opts) {
 	var defer = q.defer();
 
@@ -74,6 +90,7 @@ function scale(image, opts) {
 	return defer.promise;
 }
 
+// dispatches a transform function
 function dispatchTransform(image, opts) {
 	switch(opts.operation) {
 		case 'contain':
@@ -94,8 +111,11 @@ function dispatchTransform(image, opts) {
 	}
 }
 
+// applies a set of transformations to the image
 function transform(buffer, type, transformations) {
 	var defer = q.defer();
+
+	process.stdout.write("\t+ performing image transforms..");
 
 	lwip.open(buffer, type, (err, image) => {
 		var transforms;
@@ -103,19 +123,22 @@ function transform(buffer, type, transformations) {
 		// apply image transformations
 		transforms = transformations.reduce((soFar, transform) => {
 			return soFar.then(image => {
-				console.log("\t- applying image transforms " + JSON.stringify(transform));
+				//console.log("\t- applying image transforms " + JSON.stringify(transform));
+				process.stdout.write('.');
 				return dispatchTransform(image, transform);
 			});
 		}, q(image));
 
 		// convert image back to buffer
 		transforms.then(image => {
-			console.log("\t- finished transforms")
+			console.log('done.');
+			process.stdout.write("\t+ converting to buffer...");
 			image.toBuffer(type, (err, buffer) => {
 				if (err) {
 					defer.reject(err);
 				}
 				else {
+					console.log('done.');
 					defer.resolve(buffer);
 				}
 			});
