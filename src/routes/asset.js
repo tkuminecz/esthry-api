@@ -13,7 +13,7 @@ import asset from 'asset';
 function routes(app) {
 
 	// list assets
-	app.get('/asset/', function(req, res) {
+	app.get('/asset', function(req, res) {
 		asset.list()
 			.then(_.partialRight(_.pluck, '_id'))
 			.then(Route.sendJson(res))
@@ -21,7 +21,7 @@ function routes(app) {
 	});
 
 	// create a new asset
-	app.post('/asset/', function(req, res) {
+	app.post('/asset', function(req, res) {
 		asset.create(req.body)
 			.then(Route.sendJson(res))
 			.done();
