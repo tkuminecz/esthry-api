@@ -73,7 +73,15 @@ class Cache {
 
 		this.getManifest()
 			.then(manifest => {
-				var	filename = `/tmp/${key}-data`;
+				var	filename = `/tmp/${key}-data`,
+					manifest_keys = _.keys(manifest),
+					key_to_delete;
+
+				// delete a random key if the cache is full
+				if (manifest_keys.length === this.max) {
+					key_to_delete = manifest_keys[(Math.random() * manifests_keys.length)];
+					delete manifest[key_to_delete];
+				}
 
 				manifest[key] = filename;
 				this.setManifest(manifest)
