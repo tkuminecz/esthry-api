@@ -28,6 +28,12 @@ var schema = {
 				}
 			}}
 		},
+		{
+			key: 'type',
+			config: {validate: function(val) {
+				return (val.split('/').length === 2);
+			}}
+		},
 		[
 			{
 				key: 'image_url',
