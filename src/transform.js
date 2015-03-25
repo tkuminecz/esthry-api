@@ -123,7 +123,6 @@ function transform(buffer, type, transformations) {
 		// apply image transformations
 		transforms = transformations.reduce((soFar, transform) => {
 			return soFar.then(image => {
-				//console.log("\t- applying image transforms " + JSON.stringify(transform));
 				process.stdout.write('.');
 				return dispatchTransform(image, transform);
 			});
