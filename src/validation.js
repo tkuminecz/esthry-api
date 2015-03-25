@@ -4,12 +4,13 @@ import _ from 'lodash';
 
 // set of predefined types
 var types = {
-	array: _.isArray,
-	image_data: _.isString,
-	object: _.isObject,
-	objectid: _.isString,
-	string: _.isString,
-	url: _.isString
+	array: (val) => _.isArray(val),
+	image_data: (val) => _.isString(val),
+	object: (val) => _.isObject(val),
+	objectid: (val) => _.isString(val),
+	string: (val) => _.isString(val),
+	url: (val) => _.isString(val),
+	inArray: (val, config) => _.contains(config.set, val)
 };
 
 /**
@@ -55,7 +56,7 @@ function validateSingleValue(config, value) {
 		validate_fn = config.validate;
 	}
 
-	return validate_fn(value);
+	return validate_fn(value, config);
 }
 
 /**
