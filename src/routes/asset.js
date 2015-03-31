@@ -27,6 +27,20 @@ function routes(app) {
 			.done();
 	});
 
+	// check for an asset with the given checksum
+	app.get('/asset/checksum/:sum', (req, res) => {
+		asset.find({checksum: req.params.sum})
+			.then(result => {
+				if (result !== null) {
+					return Route.sendJson(res)(result);
+				}
+				else {
+					return Route.send404(res)(result);
+				}
+			})
+			.done();
+	});
+
 	// delete an asset
 	app.del('/asset/:id', function(req, res) {
 		asset.remove(req.params.id)

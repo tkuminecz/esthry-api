@@ -29,6 +29,10 @@ var schema = {
 			}}
 		},
 		{
+			key: 'checksum',
+			config: {validate: 'string'}
+		},
+		{
 			key: 'type',
 			config: {validate: function(val) {
 				return (val.split('/').length === 2);

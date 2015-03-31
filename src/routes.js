@@ -15,6 +15,14 @@ class Route {
 		};
 	}
 
+	static send404(res) {
+		res.set('Cache-Control', 'public, max-age=0');
+
+		return function(message) {
+			res.status(404).send(message);
+		};
+	}
+
 	static sendMimeData(res, type, length, data) {
 
 		res.set('Cache-Control', 'public, max-age=0');
