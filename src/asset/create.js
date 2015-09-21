@@ -35,7 +35,8 @@ var schema = {
 		{
 			key: 'type',
 			config: {validate: function(val) {
-				return (val.split('/').length === 2);
+				var pieces = val.split('/').length;
+				return (pieces === 2);
 			}}
 		},
 		[

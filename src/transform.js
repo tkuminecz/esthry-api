@@ -112,7 +112,7 @@ function dispatchTransform(image, opts) {
 }
 
 // applies a set of transformations to the image
-function transform(buffer, type, transformations) {
+function transform(buffer, type, transformations=[]) {
 	var defer = q.defer();
 
 	process.stdout.write("\t+ performing image transforms..");
