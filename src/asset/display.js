@@ -73,6 +73,7 @@ function display(id, res) {
 								console.log('done.');
 
 								// apply image transformations
+console.log(img_data, img_data.transforms);
 								transform(buffer, img_data.type.split('/')[1], img_data.transforms)
 									.then(buffer => {
 										// save data to cache
